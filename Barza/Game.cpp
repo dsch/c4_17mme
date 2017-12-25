@@ -23,7 +23,7 @@ int Game::getEmptyCell(char column)
         row--;
         if(grid[row][column].isEmpty()) return row;
 
-    } while ( !row==0 );
+    } while ( row>0 );
     return -1;
 
 }
@@ -41,7 +41,7 @@ bool Game::test( char color, char gridRow,char gridCol, bool expectedValue)
 
     setBoard(CurrentPlayer,gridRow,gridCol);
     bool testResult = checkBoard(gridRow,gridCol);
-    grid[gridRow][gridCol].empty=true;
+    //grid[gridRow][gridCol].empty=true;
 
     std::cout <<"test("<<"'"<<color<<"',"<<gridRow+1<<","<<gridCol+1<<")"<<" : ";
 
@@ -99,7 +99,7 @@ bool Game::checkBoard(char gridRow,char gridCol)
     //Vertical Check
         j=gridCol;
         i=gridRow;
-        while ((grid[i][j].getColor()==color)&&(i<gridRow+cellSet)&&(i<6)) {i++;}
+        while ((grid[i][j].getColor()==color)&&(i<gridRow+cellSet)&&(i<6)) {i++; if (i>5) break;}
         if(i==gridRow+cellSet) return true;
 
     // Horizontal Check
@@ -116,7 +116,7 @@ bool Game::checkBoard(char gridRow,char gridCol)
     for(char c=colStart; c<=colEnd-3; c++)
     {
         j=c;
-        while ((!grid[i][j].isEmpty()) && (grid[i][j].getColor()==color)&&(j<c+cellSet)) {i++; j++;}
+        while ((!grid[i][j].isEmpty()) && (grid[i][j].getColor()==color)&&(j<c+cellSet)) {i++; j++; if (i > 5) break;}
         if(j==c+cellSet) return true;
     }
 
@@ -125,7 +125,7 @@ bool Game::checkBoard(char gridRow,char gridCol)
     for(char c=colEnd; c>=colStart+3; c--)
     {
         j=c;
-        while ((!grid[i][j].isEmpty()) && (grid[i][j].getColor()==color)&&(j>c-cellSet)) {i++; j--;}
+        while ((!grid[i][j].isEmpty()) && (grid[i][j].getColor()==color)&&(j>c-cellSet)) {i++; j--; if (i > 5) break;}
         if(j==c-cellSet)  return true;
     }
 
@@ -148,9 +148,8 @@ void Game::play()
 
 
        selectedColumn = ui.askPlayer(CurrentPlayer);
-       if(selectedColumn==9) {gameRunning=false; std::cout << "\n" <<  abort.what()<< "\n"; }
-
-       selectedColumn--;
+       if(selectedColumn==8) {gameRunning=false; std::cout << "\n" <<  abort.what()<< "\n"; }
+       else {
 
        currentRow=getEmptyCell(selectedColumn);
 
@@ -159,12 +158,12 @@ void Game::play()
 
         if(CurrentPlayer==UserInterface::Color::RED) CurrentPlayer=UserInterface::Color::YELLOW;
         else CurrentPlayer=UserInterface::Color::RED;
-
+       }
 
 
     }
 
-    //Ablauf ungefähre Idee:
+    //Ablauf ungefï¿½hre Idee:
     // 1. leeres Spielfeld initialisieren
     // 2. aktueller (erster) Spieler: welche Spalte kommt Spielstein hin?
     //

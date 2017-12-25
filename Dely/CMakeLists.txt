@@ -1,0 +1,5 @@
+GAME(main.cpp Console.cpp Spiel.cpp)
+TEST(test.cpp Spiel.cpp Console.cpp)
+UI_TEST(Console Console.cpp Console_UI.h)
+GAME_TEST(Spiel.cpp)
+set_tests_properties(DelyTestGame_abort PROPERTIES WILL_FAIL on)

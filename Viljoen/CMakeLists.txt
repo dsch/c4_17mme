@@ -1,0 +1,6 @@
+include_directories(include)
+GAME(main.cpp src/ConsoleUI.cpp src/GameLogic.cpp)
+TEST(LogicTest.cpp src/ConsoleUI.cpp src/GameLogic.cpp)
+UI_TEST(ConsoleUI src/ConsoleUI.cpp include/ConsoleUI.h)
+GAME_TEST(src/GameLogic.cpp)
+set_tests_properties(ViljoenTestGame_abort PROPERTIES WILL_FAIL on)

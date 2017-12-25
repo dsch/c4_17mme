@@ -13,7 +13,7 @@ Console_UI::~Console_UI()
 
 UserInterface::ColumnType Console_UI::askPlayer(Color color)
 {
-    unsigned int col;
+    unsigned int col = 9;
     if (color == UserInterface::Color::RED)
     {
         std::cout << "Player R:  Which column? [0-6]   (To abort press 9):  ";

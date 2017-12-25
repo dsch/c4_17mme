@@ -9,7 +9,7 @@ class GameLogic {
     UserInterface::GridType game_grid;
     UserInterface::Color winner;
 
-    explicit GameLogic(UserInterface& game_ui) : game_ui(game_ui), winner() {};
+    explicit GameLogic(UserInterface& game_ui) : winner(), game_ui(game_ui)  {};
     bool PlaceDisk(UserInterface::ColumnType column, UserInterface::Color color);
     bool CheckForWinner();
     bool CheckForDraw();

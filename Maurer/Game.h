@@ -10,7 +10,7 @@ class Game
         ~Game();
         void play();
         int Gewonnen(const UserInterface::GridType& grid);
-        void Unentschieden(const UserInterface::GridType& grid);
+        bool Unentschieden(const UserInterface::GridType& grid);
 
     protected:
 

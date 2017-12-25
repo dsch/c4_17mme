@@ -38,7 +38,7 @@ int main(int argc, char ** argv) //Anzahl der Argumente , Liste der Argumente
             cout<<"Options: "<<endl;
             cout<<" --ui console"<<endl;
             cout<<" --ui graphic"<<endl;
-            cout<<" --help"<<endl;
+            cout<<" --ui help"<<endl;
             cout<<" "<<endl;
             cout<<"Default: "<<endl;
             cout<<" --ui console "<<endl;

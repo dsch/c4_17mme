@@ -37,6 +37,7 @@ Console_UI::ColumnType Console_UI::askPlayer(Color color)
 
 void Console_UI::updateBoard(const GridType& grid)
 {
+    system("cls"); //löscht den Bildschirm der Console
     int line = grid.size();             //Zeilen werden ausgelesen, ohne Indexangabe
     int column = grid[0].size();        //alle Element aus der 0ten-Zeile ausgegeben, mit ersten Index
 

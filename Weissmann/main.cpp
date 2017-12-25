@@ -7,7 +7,51 @@
 #include <stdlib.h>
 #include "gui/Gui.h"
 
-int column = 0;
+int play_game(UserInterface& UI)
+{
+    GameLogik game;
+    bool playing = true;
+
+    UI.updateBoard(game.getGrid());
+
+    while(playing)
+    {
+        try
+        {
+            UserInterface::ColumnType col = UI.askPlayer(game.getCurrentPlayer()) + 1;
+
+            game.updateGame(col);
+
+            UI.updateBoard(game.getGrid());
+
+            if(game.isWin(game.getGrid()))
+            {
+                UI.notifyWinner(game.getCurrentPlayer());
+                playing = false;
+
+                break;
+            }
+            else if (game.isDraw(game.getGrid()))
+            {
+                UI.notifyDraw();
+                playing = false;
+                break;
+            }
+            game.switchPlayer();
+        }
+        catch(UserInterface::Abort abortException )
+        {
+            std::cout << abortException.what() << std::endl;
+            playing = false;
+        }
+
+        catch(int e)
+        {
+            std::cout<<"Der Eingegebene Wert ist ungï¿½ltig. Bitte setzen Sie erneut"<<std::endl;
+        }
+    }
+    return 0;
+}
 
 int main(int argc, char** argv)
 {
@@ -20,98 +64,16 @@ int main(int argc, char** argv)
     if(argv2 == "console")
     {
         UI_Console console_ui;
-        UserInterface& UI = console_ui;
-        GameLogik game;
-
-        bool playing = true;
-        console_ui.init();
-
-        while(playing)
-        {
-            try
-            {
-
-                UserInterface::ColumnType col = UI.askPlayer(game.getCurrentPlayer());
-
-                game.updateGame(col);
-
-                UI.updateBoard(game.getGrid());
-
-                game.switchPlayer();
-
-                if(game.isWin(game.getGrid()))
-                {
-                    UI.notifyWinner(game.getCurrentPlayer());
-                    playing = false;
-
-                    break;
-                }
-
-                console_ui.currentPlayer(game.getCurrentPlayer());
-
-                game.isDraw(game.getGrid());
-            }
-            catch(UserInterface::Abort abortException )
-            {
-                std::cout << abortException.what() << std::endl;
-                playing = false;
-            }
-
-            catch(int e)
-            {
-                std::cout<<"Der Eingegebene Wert ist ungültig. Bitte setzen Sie erneut"<<std::endl;
-            }
-        }
-        return 0;
+        return play_game(console_ui);
     }
-
 
     else if(argv2 == "graphic")
     {
-        UI_Console console_ui;
-        UserInterface& UI = console_ui;
         Gui gui;
-        GameLogik game;
-        bool playing = true;
-
-        while(playing)
-        {
-            try
-                {
-                    UserInterface::GridType grid;
-
-                    UserInterface::ColumnType col = gui.askPlayer(UserInterface::Color::RED);
-                    game.updateGame(col);
-
-                    gui.updateBoard(game.getGrid());
-                    game.switchPlayer();
-
-                    if(game.isWin(game.getGrid()))
-                    {
-                        UI.notifyWinner(game.getCurrentPlayer());
-                        playing = false;
-
-                        break;
-                    }
-                     game.isDraw(game.getGrid());
-                }
-            catch(UserInterface::Abort abortException )
-            {
-                std::cout << abortException.what() << std::endl;
-                playing = false;
-            }
-
-            catch(int e)
-            {
-                std::cout<<"Der Eingegebene Wert ist ungültig. Bitte setzen Sie erneut"<<std::endl;
-            }
-
-        }
-
-        return 0;
+        return play_game(gui);
     }
 
 
-
+    return 0;
 }
 

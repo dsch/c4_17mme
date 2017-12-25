@@ -91,7 +91,7 @@ void UI::DrawAllRows(const GridType& grid)
 void UI::DrawXAxis()
 {
     cout << "   | ";
-    for(int i = 0; i < sizeof(xAxis); i++)
+    for(int i = 0; i < (int)sizeof(xAxis); i++)
     {
          cout << (int)xAxis[i] << " | ";
     }

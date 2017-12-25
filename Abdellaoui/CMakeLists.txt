@@ -1,0 +1,6 @@
+GAME(main.cpp Console_UI.cpp Game.cpp)
+TEST(gTest.cpp Game.cpp Console_UI.cpp)
+UI_TEST(Console_UI Console_UI.cpp Console_UI.h)
+GAME_TEST(Game.cpp)
+set_tests_properties(AbdellaouiTestGame_first_full_column PROPERTIES WILL_FAIL on)
+set_tests_properties(AbdellaouiTestGame_second_full_column PROPERTIES WILL_FAIL on)

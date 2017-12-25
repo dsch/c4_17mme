@@ -1,0 +1,6 @@
+GAME(main.cpp GameLogik.cpp UI_Console.cpp)
+TEST(testCaseVierGewinnt.cpp GameLogik.cpp)
+UI_TEST(UI_Console UI_Console.cpp UI_Console.h)
+GAME_TEST(GameLogik.cpp main.cpp ../_common/tests/GuiMock.cpp UI_Console.cpp)
+set_tests_properties(WeissmannTestGame_first_full_column PROPERTIES WILL_FAIL on)
+set_tests_properties(WeissmannTestGame_second_full_column PROPERTIES WILL_FAIL on)

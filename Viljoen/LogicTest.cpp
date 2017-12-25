@@ -17,6 +17,8 @@ TEST(CheckHorizontal, True)
     Game.PlayingField[0][2]= ConsoleUI::Color::RED;
     Game.PlayingField[0][3]= ConsoleUI::Color::RED;
     ASSERT_THAT(Game.CheckHorizontalWin(),true);
+    ASSERT_THAT(Game.CheckVerticalWin(),false);
+    ASSERT_THAT(Game.CheckDiagonalWin(),false);
 }
 
 TEST(CheckVertical, True)
@@ -29,6 +31,9 @@ TEST(CheckVertical, True)
     Game.PlayingField[1][0]= ConsoleUI::Color::RED;
     Game.PlayingField[2][0]= ConsoleUI::Color::RED;
     Game.PlayingField[3][0]= ConsoleUI::Color::RED;
+    ASSERT_THAT(Game.CheckHorizontalWin(),false);
+    ASSERT_THAT(Game.CheckVerticalWin(),true);
+    ASSERT_THAT(Game.CheckDiagonalWin(),false);
 }
 
 TEST(CheckDiagonal, LeftTrue)
@@ -41,6 +46,9 @@ TEST(CheckDiagonal, LeftTrue)
     Game.PlayingField[1][1]= ConsoleUI::Color::RED;
     Game.PlayingField[2][2]= ConsoleUI::Color::RED;
     Game.PlayingField[3][3]= ConsoleUI::Color::RED;
+    ASSERT_THAT(Game.CheckHorizontalWin(),false);
+    ASSERT_THAT(Game.CheckVerticalWin(),false);
+    ASSERT_THAT(Game.CheckDiagonalWin(),true);
 }
 
 TEST(CheckDiagonal, RightTrue)
@@ -54,4 +62,7 @@ TEST(CheckDiagonal, RightTrue)
     Game.PlayingField[1][2]= ConsoleUI::Color::RED;
     Game.PlayingField[2][1]= ConsoleUI::Color::RED;
     Game.PlayingField[3][0]= ConsoleUI::Color::RED;
+    ASSERT_THAT(Game.CheckHorizontalWin(),false);
+    ASSERT_THAT(Game.CheckVerticalWin(),false);
+    ASSERT_THAT(Game.CheckDiagonalWin(),true);
 }

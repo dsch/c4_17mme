@@ -24,20 +24,20 @@ void Game::play()
     do{
         if(spieler == 0)
         {
-            einwurfSpalte = ui.askPlayer(UserInterface::Color::RED);    //Fragt den Spieler Rot welche Spalte er w‰hlt, Wert wird auf ColumnType zur¸ckgegeben
+            einwurfSpalte = ui.askPlayer(UserInterface::Color::RED);    //Fragt den Spieler Rot welche Spalte er w√§hlt, Wert wird auf ColumnType zur√ºckgegeben
             Game::PlaceField(einwurfSpalte, UserInterface::Color::RED);
             spieler = 1;
         }
         else
         {
-            einwurfSpalte = ui.askPlayer(UserInterface::Color::YELLOW);    //Fragt den Spieler Rot welche Spalte er w‰hlt, Wert wird auf ColumnType zur¸ckgegeben
+            einwurfSpalte = ui.askPlayer(UserInterface::Color::YELLOW);    //Fragt den Spieler Rot welche Spalte er w√§hlt, Wert wird auf ColumnType zur√ºckgegeben
             Game::PlaceField(einwurfSpalte, UserInterface::Color::YELLOW);
             spieler = 0;
         }
 
         ui.updateBoard(GameField);
 
-        //unentschide muss vor dem Sieg stehen, es ist mˆglich alle felder zu besetzt und trotzdem das wer gewinnt
+        //unentschide muss vor dem Sieg stehen, es ist m√∂glich alle felder zu besetzt und trotzdem das wer gewinnt
         spielstatus = Game::Spielstanddraw(spielstatus);
         spielstatus = Game::Spielstand(spielstatus);
 
@@ -73,14 +73,14 @@ void Game::PlaceField(char spalte, UserInterface::Color color)
     int laufvariableZeile = 0;
     do
     {
-            //Wenn das aktuelel Feld frei ist und das darunter liegenende besetzt ist, wird das Feld eingef‰rbt
+            //Wenn das aktuelel Feld frei ist und das darunter liegenende besetzt ist, wird das Feld eingef√§rbt
             if(GameField[laufvariableZeile][spalte].isEmpty()==true && GameField[laufvariableZeile+1][spalte].isEmpty()==false)
             {
 
                     GameField[laufvariableZeile][spalte] = color;
 
             }
-            //Ist noch kein Feld in dieser Spalte besetzt, wird das unterste eingef‰rbt
+            //Ist noch kein Feld in dieser Spalte besetzt, wird das unterste eingef√§rbt
             else if(laufvariableZeile == 5 && GameField[laufvariableZeile][spalte].isEmpty()==true)
             {
                 GameField[laufvariableZeile][spalte] = color;
@@ -132,7 +132,7 @@ int Game::Spielstand(int spielstatus)
                GameField[zeile][spalte + 2].isEmpty() == false && GameField[zeile][spalte + 2].getColor() == UserInterface::Color::RED &&
                GameField[zeile][spalte + 3].isEmpty() == false && GameField[zeile][spalte + 3].getColor() == UserInterface::Color::RED)
                 {
-                    return(1);
+                    return(0);
                 }
 
             if(GameField[zeile][spalte + 0].isEmpty() == false && GameField[zeile][spalte + 0].getColor() == UserInterface::Color::YELLOW &&
@@ -146,9 +146,9 @@ int Game::Spielstand(int spielstatus)
     }
 
     //Untersucht das Spielfeld auf Diogonale 4-Gewinnt
-    for(spalte = 0; spalte <=2; spalte++)
+    for(spalte = 0; spalte <=3; spalte++)
     {
-        for(zeile = 0; zeile <=3; zeile++)
+        for(zeile = 0; zeile <=2; zeile++)
         {
             //Diogonal lvon links unten nach rechts oben
             if(GameField[zeile + 0][spalte + 0].isEmpty() == false && GameField[zeile + 0][spalte + 0].getColor() == UserInterface::Color::RED &&
@@ -189,10 +189,10 @@ int Game::Spielstand(int spielstatus)
 
 }
 
-//‹berpr¸ft ob das Spielfeld komplett gef¸llt ist
+//√úberpr√ºft ob das Spielfeld komplett gef√ºllt ist
 int Game::Spielstanddraw(int spielstatus)
 {
-    //‹berpr¸ft ob alle Felder der obersten Reihe besetzt sind
+    //√úberpr√ºft ob alle Felder der obersten Reihe besetzt sind
     for(int spalte = 0; spalte <=6; spalte++)
     {
          if(GameField[0][spalte].isEmpty() == true)

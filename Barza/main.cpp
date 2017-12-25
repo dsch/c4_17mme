@@ -6,8 +6,8 @@
 #include "Game.h"
 
 
-// Test Cases verwenden ist auch für Prüfung wichtig!
-// Test für Gewinner-Logik schreiben
+// Test Cases verwenden ist auch fï¿½r Prï¿½fung wichtig!
+// Test fï¿½r Gewinner-Logik schreiben
 //
 
 bool testPassed() //startet nur alle Elemente
@@ -29,7 +29,7 @@ bool testPassed() //startet nur alle Elemente
    if(testSuccessful) return true; else return false;
 }
 
-int select;
+// int select; confilcts with select function from standard libray
 
 int main(int argc,char** argv)
 {
@@ -42,7 +42,7 @@ int main(int argc,char** argv)
         {
             Console_UI ui;
             Game game(ui);
-            if(testPassed())game.play();
+            game.play();
         }
 
         if(argv2=="graphic")
@@ -63,7 +63,7 @@ int main(int argc,char** argv)
 
         Console_UI ui;
         Game game(ui);
-        if(testPassed())game.play();
+        game.play();
         }
 
 }

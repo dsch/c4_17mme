@@ -14,7 +14,7 @@ TEST(SquareRootTest, PositiveNos) {
 
     success = game.checkBoard(0, 0);
 
-    ASSERT_True(success);
+    ASSERT_TRUE(success);
 
     //EXPECT_EQ (row=r, colow=r, col-48 (1));
     //EXPECT_EQ (25.4, square-root (645.16));

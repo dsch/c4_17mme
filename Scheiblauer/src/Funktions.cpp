@@ -79,7 +79,7 @@ bool Funktions::winCheck(UserInterface::GridType board)
     }
 
     /** Diagonale von links unten - nach rechts oben: Gewinner-Ermittlung **/
-    if (connect != FOUR)
+    connect = 0;
     {
         for(int ii_column=0; ii_column < column-3; ii_column++)
         {
@@ -118,7 +118,7 @@ bool Funktions::winCheck(UserInterface::GridType board)
     }
 
     /** Diagonale von links oben - nach rechts unten: Gewinner-Ermittlung **/
-    if (connect != FOUR)
+    connect = 0;
     {
         for(int ii_line=0; ii_line < line-3; ii_line++)
         {

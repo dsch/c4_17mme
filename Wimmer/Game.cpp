@@ -1,8 +1,8 @@
 #include "Game.h"
 
-void Game::Unentschieden(const UserInterface::GridType& grid)
+bool Game::Unentschieden(const UserInterface::GridType& grid)
 {
-int row = 5;
+int row = 0;
 int zaehler = 0;
 
         for(int col=0; col<=6; col++)
@@ -15,7 +15,9 @@ int zaehler = 0;
             if(zaehler >= 7)
             {
                 ui.notifyDraw();
+                return true;
             }
+    return false;
 }
 
 int Game::Gewonnen(const UserInterface::GridType& grid)
@@ -89,7 +91,7 @@ int rueckgabe = 0;
     }
     /// ///////////////////////////////////////////////////////////////////////////////////////////////////////
 /// ///////////////////////////////////////////////////////////////////////////////////////////////////////
-/// schräg nach rechts oben
+/// schrï¿½g nach rechts oben
 
     for(int col=0; col<=6; col++)
     {
@@ -122,7 +124,7 @@ int rueckgabe = 0;
         }
     }
     /// ///////////////////////////////////////////////////////////////////////////////////////////////////////
-/// schräg nach links oben
+/// schrï¿½g nach links oben
 
     for(int col=3; col<=6; col++)
     {
@@ -190,6 +192,8 @@ void Game::play()
     int Reihe = 0;
     int run =1;
 
+    ui.updateBoard(SpielFeld);
+
     while (run)
     {
         Reihe = 5;
@@ -199,7 +203,7 @@ void Game::play()
             Reihe--;
             if(Reihe < 0)
             {
-                // std::cout << "Fail - Spalte ist voll. Andere Spalte wählen";
+                // std::cout << "Fail - Spalte ist voll. Andere Spalte wï¿½hlen";
                 colNow = ui.askPlayer(ui.Color::RED);
                 Reihe = 5;
             }
@@ -207,10 +211,10 @@ void Game::play()
 
         SpielFeld[Reihe][colNow] = (ui.Color::RED); /// col in int?
         ui.updateBoard(SpielFeld);
-        Gewonnen(SpielFeld);
-        Unentschieden(SpielFeld);
+        run = (Gewonnen(SpielFeld) == 0) && !Unentschieden(SpielFeld);
 
-
+        if (run)
+        {
         Reihe = 5;
         colNow = ui.askPlayer(ui.Color::YELLOW);
         while (SpielFeld[Reihe][colNow].isEmpty() == false)
@@ -218,8 +222,8 @@ void Game::play()
             Reihe--;
             if(Reihe < 0)
             {
-                // std::cout << "Fail Spalte voll. Andere Spalte wählen";
-                colNow = ui.askPlayer(ui.Color::RED);
+                // std::cout << "Fail Spalte voll. Andere Spalte wï¿½hlen";
+                colNow = ui.askPlayer(ui.Color::YELLOW);
                 /// if (0 <= colNow <= 7)
                 Reihe = 5;
             }
@@ -227,8 +231,7 @@ void Game::play()
         SpielFeld[Reihe][colNow] = (ui.Color::YELLOW); /// col in int?
         ui.updateBoard(SpielFeld);
 
-        Gewonnen(SpielFeld);
-        Unentschieden(SpielFeld);
+        run = (Gewonnen(SpielFeld) == 0) && !Unentschieden(SpielFeld);
+        }
     }
 }
-

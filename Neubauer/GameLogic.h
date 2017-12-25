@@ -22,7 +22,6 @@ class GameLogic
         UserInterface& Interface;
         UserInterface::Color Beginner = UserInterface::Color::RED;
         UserInterface::Color CurrentPlayer = UserInterface::Color::RED;
-        UserInterface::Color Winner;
         UserInterface::GridType GameBoard;
 
         unsigned char GetRowByColumn(unsigned char col);

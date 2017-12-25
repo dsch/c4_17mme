@@ -20,7 +20,7 @@ int Game::getEmptyCell(char column)
         row--;
         if(grid[row][column].isEmpty()) return row;
 
-    } while ( !row==0 );
+    } while ( row>0 );
     return -1;
 }
 
@@ -36,7 +36,7 @@ bool Game::test( char color, char gridRow,char gridCol, bool expectedValue)
 
     setBoard(CurrentPlayer,gridRow,gridCol);
     bool testResult = checkBoard(gridRow,gridCol);
-    grid[gridRow][gridCol].empty=true;
+    //grid[gridRow][gridCol].empty=true;
 
     std::cout <<"Getestet wird auf dem obigem Feld folgendes Muster -->("<<"'"<<color<<"',"<<gridRow+1<<","<<gridCol+1<<")"<<" : ";
 
@@ -82,13 +82,13 @@ bool Game::checkBoard(char gridRow,char gridCol)
     if(colStart<0) colStart=0;
     if(colEnd>6) colEnd=6;
 
-    //Vertikale Überprüfung
+    //Vertikale ÃœberprÃ¼fung
         j=gridCol;
         i=gridRow;
-        while ((grid[i][j].getColor()==color)&&(i<gridRow+cellSet)&&(i<6)) {i++;}
+        while ((grid[i][j].getColor()==color)&&(i<gridRow+cellSet)&&(i<6)) {i++; if (i>5) break;}
         if(i==gridRow+cellSet) return true;
 
-    //Horizontale Überprüfung
+    //Horizontale ÃœberprÃ¼fung
     i=gridRow;
     for(char c=colStart; c<=gridCol; c++)
     {
@@ -97,21 +97,21 @@ bool Game::checkBoard(char gridRow,char gridCol)
         if(j==c+cellSet) return true;
     }
 
-    // Diagonale Überprüfung
+    // Diagonale ÃœberprÃ¼fung
     i=gridRow;
     for(char c=colStart; c<=colEnd-3; c++)
     {
         j=c;
-        while ((!grid[i][j].isEmpty()) && (grid[i][j].getColor()==color)&&(j<c+cellSet)) {i++; j++;}
+        while ((!grid[i][j].isEmpty()) && (grid[i][j].getColor()==color)&&(j<c+cellSet)) {i++; j++; if (i>5) break;}
         if(j==c+cellSet) return true;
     }
 
-    // Diagonale Überprüfung links
+    // Diagonale ÃœberprÃ¼fung links
     i=gridRow;
     for(char c=colEnd; c>=colStart+3; c--)
     {
         j=c;
-        while ((!grid[i][j].isEmpty()) && (grid[i][j].getColor()==color)&&(j>c-cellSet)) {i++; j--;}
+        while ((!grid[i][j].isEmpty()) && (grid[i][j].getColor()==color)&&(j>c-cellSet)) {i++; j--; if (i>5) break;}
         if(j==c-cellSet)  return true;
     }
 
@@ -132,10 +132,8 @@ void Game::play()
        ui.updateBoard(grid);
 
        selectedColumn = ui.askPlayer(CurrentPlayer);
-       if(selectedColumn==0) {gameRunning=false; std::cout << "\n" <<  abort.what()<< "\n"; }
-
-       selectedColumn--;
-
+       if(selectedColumn==-1) {gameRunning=false; std::cout << "\n" <<  abort.what()<< "\n"; }
+       else {
        currentRow=getEmptyCell(selectedColumn);
 
        setBoard(CurrentPlayer,currentRow,selectedColumn);
@@ -143,6 +141,7 @@ void Game::play()
 
        if(CurrentPlayer==UserInterface::Color::RED) CurrentPlayer=UserInterface::Color::YELLOW;
        else CurrentPlayer=UserInterface::Color::RED;
+       }
     }
 
 }

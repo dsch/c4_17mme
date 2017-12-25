@@ -36,7 +36,7 @@ int main(int argc,char** argv)
         {
             Console_UI ui;
             Game game(ui);
-            if(testPassed())game.play();
+            game.play();
         }
 
         if(argv2=="graphic")
@@ -57,7 +57,7 @@ int main(int argc,char** argv)
 
         Console_UI ui;
         Game game(ui);
-        if(testPassed())game.play();
+        game.play();
         }
 
 }

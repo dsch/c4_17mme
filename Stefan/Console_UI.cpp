@@ -1,6 +1,6 @@
 #include "Console_UI.h"
 #include <iostream>
-// implementierung der Funktionen, die in Console_UI.h vorangekündigt wurden
+// implementierung der Funktionen, die in Console_UI.h vorangekÃ¼ndigt wurden
 
 Console_UI::Console_UI()
 {
@@ -15,24 +15,25 @@ Console_UI::~Console_UI()
     //dtor
 }
 
-//warum zwei mal :: erstes weil man userinterface :: columnType verwenden will könnt ja auch .
+//warum zwei mal :: erstes weil man userinterface :: columnType verwenden will kÃ¶nnt ja auch .
 
 //man schaut im UserInterface nach dem ColumnType welches "char" ist
 //also char Console_UI::askPlayer(Color color)
 //im Console_UI wird nach askPlayer geschaut
 UserInterface::ColumnType Console_UI::askPlayer(Color color)
 {
+    int Eingabe = 13;
 
     if( color == UserInterface::Color::RED)
     {
 
-        std::cout<< "Spieler ROT Spalte auswählen [1-6] mit 13 Abbrechen" <<std::endl;
+        std::cout<< "Spieler ROT Spalte auswÃ¤hlen [1-7] mit 13 Abbrechen" <<std::endl;
         std::cin >> Eingabe;
     }
 
     if(color == UserInterface::Color::YELLOW)
     {
-        std::cout<< "Spieler GELB Spalte auswählen [1-6] mit 13 Abbrechen" <<std::endl;
+        std::cout<< "Spieler GELB Spalte auswÃ¤hlen [1-7] mit 13 Abbrechen" <<std::endl;
         std::cin >> Eingabe;
     }
     if( Eingabe == 13)
@@ -40,7 +41,7 @@ UserInterface::ColumnType Console_UI::askPlayer(Color color)
         throw Abort();
     }
 
-    return Eingabe;
+    return Eingabe - 1;
 }
 
 void Console_UI::updateBoard(const GridType& grid)

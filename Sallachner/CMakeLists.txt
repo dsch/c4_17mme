@@ -1,0 +1,8 @@
+include_directories(${common_dir}/windows)
+GAME(main.cpp Console.cpp Logic.cpp)
+TEST(TEST.cpp Logic.cpp)
+UI_TEST(UI Console.cpp Console.h)
+GAME_TEST("main.cpp;Logic.cpp;Console.cpp;../_common/tests/GuiMock.cpp")
+set_tests_properties(SallachnerTestGame_first_full_column PROPERTIES WILL_FAIL on)
+set_tests_properties(SallachnerTestGame_second_full_column PROPERTIES WILL_FAIL on)
+set_tests_properties(SallachnerTestGame_abort PROPERTIES WILL_FAIL on)

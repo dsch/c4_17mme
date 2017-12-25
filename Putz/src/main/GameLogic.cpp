@@ -103,14 +103,14 @@ bool GameLogic::CheckForDraw(){
       for (size_t i = 1; i <= 3 && row + i < num_rows; i++) {
 
         // Make sure that the next fields are empty or have the same colour
-        if (!game_grid[row + i][column].isEmpty())
+        if (!game_grid[row + i][column].isEmpty()) {
           if (current_empty) {
             current_color = game_grid[row + i][column].getColor();
             current_empty = false;
           }
           else if (game_grid[row + i][column].getColor() != current_color)
             break;
-
+        }
         if (i == 3) {
           return false;
         }
@@ -121,14 +121,14 @@ bool GameLogic::CheckForDraw(){
       for (size_t i = 1; i <= 3 && column + i < num_columns; i++) {
 
         // Make sure that the next fields are empty or have the same colour
-        if (!game_grid[row][column + i].isEmpty())
+        if (!game_grid[row][column + i].isEmpty()) {
           if (current_empty) {
             current_color = game_grid[row][column + i].getColor();
             current_empty = false;
           }
           else if (game_grid[row][column + i].getColor() != current_color)
             break;
-
+        }
         if (i == 3) {
           return false;
         }
@@ -139,14 +139,14 @@ bool GameLogic::CheckForDraw(){
       for (size_t i = 1; i <= 3 && row + i < num_rows && column + i < num_columns; i++) {
 
         // Make sure that the next fields are empty or have the same colour
-        if (!game_grid[row + i][column + i].isEmpty())
+        if (!game_grid[row + i][column + i].isEmpty()) {
           if (current_empty) {
             current_color = game_grid[row + i][column + i].getColor();
             current_empty = false;
           }
           else if (game_grid[row + i][column + i].getColor() != current_color)
             break;
-
+        }
         if (i == 3) {
           return false;
         }
@@ -157,14 +157,14 @@ bool GameLogic::CheckForDraw(){
       for (size_t i = 1; i <= 3 && row + i < num_rows && column - i >= 0; i++) {
 
         // Make sure that the next fields are empty or have the same colour
-        if (!game_grid[row + i][column - i].isEmpty())
+        if (!game_grid[row + i][column - i].isEmpty()) {
           if (current_empty) {
             current_color = game_grid[row + i][column - i].getColor();
             current_empty = false;
           }
           else if (game_grid[row + i][column - i].getColor() != current_color)
             break;
-
+        }
         if (i == 3) {
           return false;
         }

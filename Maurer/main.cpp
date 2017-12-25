@@ -9,7 +9,7 @@
 int main(int argc, char** argv)
 {
     std::cout << argc << std::endl;
-    std::cout << argv[1] << std::endl;
+    //std::cout << argv[1] << std::endl;
 
 if (argc >= 3)
 {
@@ -37,7 +37,7 @@ if (argc >= 3)
         std::cout << "4-Gewinnt Hilfe:   Verfuegbare Input parameter:" << std::endl;
         std::cout << "--gui graphic:     Graphisches Interface wird gestartet." << std::endl;
         std::cout << "--gui console:     Konsole wird gestartet." << std::endl;
-        std::cout << "--gui:             Standardmässig wird die Konsole gestartet." << std::endl;
+        std::cout << "--gui:             Standardmï¿½ssig wird die Konsole gestartet." << std::endl;
         std::cout << "--gui help:        Diese Hilfe erneut anzeigen." << std::endl << std::endl;
         std::cout << "24 Stunden Support: +435455548965485" << std::endl;
     }

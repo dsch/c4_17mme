@@ -13,7 +13,7 @@ Console::~Console()
 
 UserInterface::ColumnType Console::askPlayer(Color color)
 {
-    unsigned int col;
+    unsigned int col = 9;
     if (color == UserInterface::Color::RED)
     {
         std::cout << "Player R:  Which column? [1-7]   (To abort press 9):  ";
@@ -32,7 +32,7 @@ UserInterface::ColumnType Console::askPlayer(Color color)
         throw Abort();
         }
 
-    return col;
+    return col-1;
 }
 
 
@@ -50,7 +50,7 @@ void Console::updateBoard(const GridType& grid)
 
     for(int row=0; row<=5; row++)
     {
-        for(int col=1; col<=7; col++)
+        for(int col=0; col<=6; col++)
         {
             if (grid[row][col].isEmpty() == true)
             {

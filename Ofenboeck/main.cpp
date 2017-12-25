@@ -15,17 +15,16 @@ void play_game(UserInterface& gui)
 
     UserInterface::GridType grid;      //definiert die Variable "grid" und initialisiert alle Felder mit "empty"
     int field_lines = grid.size();
-    Funktions allFunctions;            //enthält alle Funktionen zur Gewinner-Ermittlung
+    Funktions allFunctions;            //enthÃ¤lt alle Funktionen zur Gewinner-Ermittlung
     UserInterface::Abort abortExeption;
 
     while(game_is_running)
     {
         try
         {
-            system("cls"); //löscht den Bildschirm der Console
             gui.updateBoard(grid);
 
-            /**ermittelt welcher Spieler den nächsten Stein wirft**/
+            /**ermittelt welcher Spieler den nÃ¤chsten Stein wirft**/
             if ( (round % 2) == 0)
             {
                 column = gui.askPlayer(UserInterface::Color::YELLOW)+1;
@@ -78,9 +77,8 @@ void play_game(UserInterface& gui)
                 }
             }
 
-            system("cls"); //löscht den Bildschirm der Console
 
-            /** Gewinner Überprüfung **/
+            /** Gewinner ÃœberprÃ¼fung **/
             winner = allFunctions.winCheck(grid);
 
             if (winner)
@@ -99,9 +97,10 @@ void play_game(UserInterface& gui)
             }
 
 
-            /**Unentschieden Überprüfung**/
+            /**Unentschieden ÃœberprÃ¼fung**/
             if (allFunctions.drawCheck(grid))   // wenn maximale Rundenanzahl erreicht ist wird Unentscheiden ausgegeben.
             {
+                gui.updateBoard(grid);
                 gui.notifyDraw();
                 game_is_running = false;
             }

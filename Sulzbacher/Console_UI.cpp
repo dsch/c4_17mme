@@ -13,7 +13,7 @@ Console_UI::~Console_UI()
     //dtor
 }
 
-//Frag in der Console nach welche Spalte der jeweilige Spieler auswählt
+//Frag in der Console nach welche Spalte der jeweilige Spieler auswÃ¤hlt
 UserInterface::ColumnType Console_UI::askPlayer(Color color)
 {
     int spaltennummer;
@@ -31,7 +31,7 @@ UserInterface::ColumnType Console_UI::askPlayer(Color color)
         std::cin >> spaltennummer;
         std::cout << std::endl;
 
-    }while(spaltennummer > 6 || spaltennummer < 0);  //Lässt nur bestimmte Zahlen zu
+    }while(spaltennummer > 6 || spaltennummer < 0);  //LÃ¤sst nur bestimmte Zahlen zu
 
   return spaltennummer;
 
@@ -51,7 +51,6 @@ void Console_UI::updateBoard(const GridType& grid)
     //Zwischzeile
     std::cout << "--------------------------------" << std::endl;
 
-    Color color;
 
     for(int zeile = 0; zeile < 6; zeile++)
     {

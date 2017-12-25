@@ -166,7 +166,7 @@ string GameLogic::RowToString(UserInterface::RowType row)
 
 string GameLogic::ColumnToString(UserInterface::GridType grid, uint8_t col)
 {
-    char buffer[GAME_ROWS];
+    char buffer[GAME_COLUMNS];
     for(int i = 0; i < GAME_ROWS; i++)
     {
         UserInterface::RowType row = grid[i];

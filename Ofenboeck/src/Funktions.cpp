@@ -20,7 +20,7 @@ bool Funktions::winCheck(UserInterface::GridType board)
     int column = board[0].size();           //Mit ersten Index werden alle Element aus der 0ten-Zeile ausgegeben
 
     /** Horizontale Gewinner-Ermittlung **/
-    if (connect != FOUR)
+
     {
     for (int i_line=line-1; i_line >= 0; i_line--)
     {
@@ -51,7 +51,7 @@ bool Funktions::winCheck(UserInterface::GridType board)
     }
 
     /** Vertikale Gewinner-Ermittlung **/
-    if (connect != FOUR)
+    connect = 0;
     {
         for (int i_column=column-1; i_column >= 0; i_column--)
         {
@@ -81,7 +81,7 @@ bool Funktions::winCheck(UserInterface::GridType board)
     }
 
     /** Diagonale von links unten - nach rechts oben: Gewinner-Ermittlung **/
-    if (connect != FOUR)
+    connect = 0;
     {
         for(int ii_column = 0 ; ii_column < column-3; ii_column++)
         {
@@ -120,7 +120,7 @@ bool Funktions::winCheck(UserInterface::GridType board)
     }
 
     /** Diagonale von links oben - nach rechts unten: Gewinner-Ermittlung **/
-    if (connect != FOUR)
+    connect = 0;
     {
         for(int ii_line = 0 ; ii_line < line-3; ii_line++)
         {

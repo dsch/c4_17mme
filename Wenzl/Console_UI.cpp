@@ -14,7 +14,7 @@ Console_UI::~Console_UI()
 
 UserInterface::ColumnType Console_UI::askPlayer(Color color)
 {
-    unsigned int col;
+    unsigned int col = 9;
     if (color == UserInterface::Color::RED)
     {
         std::cout << "Player R:  Welche Spalte? [0-6]   (abbrechen: 9):  ";
@@ -48,7 +48,7 @@ void Console_UI::updateBoard(const GridType& grid)
     std::cout << " 0  1  2  3  4  5  6"<< "\n";
 
 
-    for(int row=5; row>=0; row--)
+    for(int row=0; row<=5; row++)
     {
         for(int col=0; col<=6; col++)
         {

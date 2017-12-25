@@ -4,6 +4,7 @@
 
 UI_Console::UI_Console()
 {
+    this->init();
 }
 UI_Console::~UI_Console()
 {
@@ -12,6 +13,7 @@ UI_Console::~UI_Console()
 
 UI_Console::ColumnType UI_Console::askPlayer(Color color)
 {
+        currentPlayer(color);
         std::cout << "\n\r          Bitte setzen!       " << std::endl;
         int readValue=0;
 

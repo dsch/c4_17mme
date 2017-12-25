@@ -15,11 +15,20 @@ Game::~Game()
     //dtor
 }
 
+void Game::updateBoard() {
+    UserInterface::GridType flip_grid;
+    for (std::size_t i=0; i<6; i++)
+    {
+        flip_grid[i] = grid[5-i];
+    }
+    ui.updateBoard(flip_grid);
+}
+
 void Game::playGame()
 {
     bool gameRunning = true;
     int decisionColumn = 0;
-    int player = 0;           //0 = RED; 1=YELLOW;
+    int player = RED;           //0 = RED; 1=YELLOW;
     int actualRow = 0;
     int winnerVertikal = 0;
     int winnerHorizontal = 0;
@@ -29,9 +38,7 @@ void Game::playGame()
 
     while(gameRunning)
     {
-        system("cls");
-
-        ui.updateBoard(grid);
+        updateBoard();
 
         decisionColumn = changeBetweenPlayer(player);
 
@@ -63,16 +70,16 @@ void Game::playGame()
 }
 
 
-int Game::changeBetweenPlayer(int player)   //Ständiges welches zwischen Rot und Gelb, es beginnt immer Rot
+int Game::changeBetweenPlayer(int player)   //StÃ¤ndiges welches zwischen Rot und Gelb, es beginnt immer Rot
 {
     int choosenColumn = 0;
 
-    if(player == 0)
+    if(player == RED)
     {
         choosenColumn = ui.askPlayer(UserInterface::Color::RED);    //Frage den Roten-Spieler in welche Spalte er setzen will
     }
 
-    else if(player == 1)
+    else if(player == YELLOW)
     {
         choosenColumn = ui.askPlayer(UserInterface::Color::YELLOW);     //Frage den Gelben-Spieler in welche Spalte er setzen will
     }
@@ -80,12 +87,12 @@ int Game::changeBetweenPlayer(int player)   //Ständiges welches zwischen Rot und
 }
 
 
-int Game::searchFreeRow(int columnVariable,int player) //Überprüfung in welcher Reihe ein freies Feld existiert
+int Game::searchFreeRow(int columnVariable,int player) //ÃœberprÃ¼fung in welcher Reihe ein freies Feld existiert
 {
     int runThrewRows = 0;
     int newRow = 0;
 
-    for(runThrewRows=1; runThrewRows <= 6; runThrewRows++)
+    for(runThrewRows=0; runThrewRows < 6; runThrewRows++)
     {
              if(grid[runThrewRows][columnVariable].isEmpty()==true)
              {
@@ -97,16 +104,16 @@ int Game::searchFreeRow(int columnVariable,int player) //Überprüfung in welcher 
 }
 
 
-int Game::writeInField(int emptyRow,int columnToWrite, int player)  //Setzen der Disk abhängig vom Spieler
+int Game::writeInField(int emptyRow,int columnToWrite, int player)  //Setzen der Disk abhÃ¤ngig vom Spieler
 {
     switch(player)
     {
-        case 1:     grid[emptyRow][columnToWrite]=ui.Color::YELLOW; //field[Reihe][Spalte]
-                    player = 0;                                     //Umschalten zu Player RED
+        case YELLOW:     grid[emptyRow][columnToWrite]=ui.Color::YELLOW; //field[Reihe][Spalte]
+                    player = RED;   
                     break;
 
-        case 0:     grid[emptyRow][columnToWrite]=ui.Color::RED;    //field[Reihe][Spalte]
-                    player = 1;                                     //Umschalten zu Player Yellow
+        case RED:     grid[emptyRow][columnToWrite]=ui.Color::RED;    //field[Reihe][Spalte]
+                    player = YELLOW;   
                     break;
     }
     return player;
@@ -120,16 +127,16 @@ int Game::checkVertikalWinner(int row, int column, int player)
     int lockYellow = 0;
     int vertikalWinnerCounter = 0;
 
-    if(player == 1) //RED
+    if(player == YELLOW) //RED
     {
         lockYellow = 1;
     }
-    else if(player == 0) //YELLOW
+    else if(player == RED) //YELLOW
     {
         lockRed = 1;
     }
 
-    while(runningVariable >= 1)
+    while(runningVariable >= 0)
     {
         if(vertikalWinnerCounter == WINNER)
         {
@@ -163,16 +170,16 @@ int Game::checkHorizontalWinner(int row, int player)
     int lockRed = 0;
     int lockYellow = 0;
 
-    if(player==1) //RED
+    if(player==YELLOW) //RED
     {
         lockYellow =1;
     }
-    else if(player == 0) //YELLOW
+    else if(player == RED) //YELLOW
     {
         lockRed=1;
     }
 
-    while(runningVariable <=7)      //Für ein aufsteigendes Spielfeld
+    while(runningVariable <=7)      //FÃ¼r ein aufsteigendes Spielfeld
     {
         if(horizontalCounter ==4)
         {
@@ -206,11 +213,11 @@ int Game::checkDiagonalLeftWinner()//int row)
 {
     int diagonalCounter= 0;
 
-    for(int runningColumn = 1; runningColumn <= 4; runningColumn++)
+    for(int runningColumn = 0; runningColumn < 4; runningColumn++)
     {
         //std::cout<<"for1"<<std::endl;
 
-        for(int runningRow = 4; runningRow <= 6; runningRow++)
+        for(int runningRow = 3; runningRow < 6; runningRow++)
         {
             //std::cout<<"for2"<<std::endl;
             if( grid[runningRow][runningColumn].isEmpty() == false
@@ -278,7 +285,7 @@ int Game::checkDiagonalRightWinner()
     for(int runningColumn = 7; runningColumn >= 4; runningColumn--)
     {
 
-        for(int runningRow = 4; runningRow <=6; runningRow++)
+        for(int runningRow = 3; runningRow < 6; runningRow++)
         {
 
             if( grid[runningRow][runningColumn].isEmpty() == false
@@ -343,15 +350,14 @@ bool Game::outputWinner(int player)
 {
     bool runningGame = true;
 
-    system("cls");
-    ui.updateBoard(grid);
+    updateBoard();
 
-    if(player != 0) //This is inverted
+    if(player != RED) //This is inverted
     {
         ui.notifyWinner(UserInterface::Color::RED);
           runningGame =false;
     }
-    else if(player != 1)
+    else if(player != YELLOW)
     {
         ui.notifyWinner(UserInterface::Color::YELLOW);
           runningGame =false;
@@ -367,6 +373,7 @@ bool Game::checkIfDraw(int settedDisks)
 
     if(settedDisks == 42)
     {
+        updateBoard();
         ui.notifyDraw();
         localVariable = false;
     }

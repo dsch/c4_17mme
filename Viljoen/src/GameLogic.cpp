@@ -93,16 +93,16 @@ bool GameLogic::CheckDiagonalWin() // check diagonal
 
     for (int j=0; j<=6; j++) // to the right
     {
-        for(int i=5, q=0; i>0 && j+1+q<=6; i--,q++)
+        for(int i=5-j, q=0; i>0 && q+1<=6; i--,q++)
         {
-            if (!PlayingField[i][j+q].isEmpty() && !PlayingField[i-1][j+1+q].isEmpty())
+            if (!PlayingField[i][q].isEmpty() && !PlayingField[i-1][q+1].isEmpty())
             {
                 if (WinDiagonalCounter==0)
                 {
                     WinDiagonalCounter++;
                 }
 
-                if(PlayingField[i][j+q].getColor()==PlayingField[i-1][j+1+q].getColor())
+                if(PlayingField[i][q].getColor()==PlayingField[i-1][q+1].getColor())
                 {
                     WinDiagonalCounter++;
                 }

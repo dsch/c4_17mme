@@ -6,8 +6,9 @@ ConsoleInterface::~ConsoleInterface() {}
 
 void ConsoleInterface::updateBoard(const GridType& field)
 {
+    system("cls");
+
     int Row = 6; //UserInterface::RowType
-    int Grid = 7; //UserInterface::GridType
 
     //Auflistung von oben nach unten
     /*cout<<" "<<endl;
@@ -59,19 +60,19 @@ void ConsoleInterface::updateBoard(const GridType& field)
         for(int gridVariable = 1; gridVariable <= 7; gridVariable++)
         {
 
-            if(field[Row-rowVariable][Grid+gridVariable].getColor() == UserInterface::Color::YELLOW
-                &&field[Row-rowVariable][Grid+gridVariable].isEmpty() == false)
+            if(field[rowVariable-1][gridVariable-1].getColor() == UserInterface::Color::YELLOW
+                &&field[rowVariable-1][gridVariable-1].isEmpty() == false)
             {
                 cout<< 'Y';
             }
 
-            else if(field[Row-rowVariable][Grid+gridVariable].getColor() == UserInterface::Color::RED
-                    &&field[Row-rowVariable][Grid+gridVariable].isEmpty() == false)
+            else if(field[rowVariable-1][gridVariable-1].getColor() == UserInterface::Color::RED
+                    &&field[rowVariable-1][gridVariable-1].isEmpty() == false)
             {
                 cout<< 'R';
             }
 
-            else if(field[Row-rowVariable][Grid+gridVariable].isEmpty()== true || '0')
+            else if(field[rowVariable-1][gridVariable-1].isEmpty()== true)
             {
                 cout<< " ";
             }
@@ -120,7 +121,7 @@ UserInterface::ColumnType ConsoleInterface::askPlayer(Color color)
     }
     cout<<"Saved"<<endl;
 
-    return columnNumber;
+    return columnNumber - 1;
 }
 
 void ConsoleInterface::notifyWinner(Color color)

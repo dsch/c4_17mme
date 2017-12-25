@@ -1,0 +1,7 @@
+GAME(main.cpp Console_UI.cpp Game.cpp)
+TEST(test.cpp)
+UI_TEST(Console_UI Console_UI.cpp Console_UI.h)
+GAME_TEST(Game.cpp)
+set_tests_properties(SulzbacherTestGame_first_full_column PROPERTIES WILL_FAIL on)
+set_tests_properties(SulzbacherTestGame_second_full_column PROPERTIES WILL_FAIL on)
+set_tests_properties(SulzbacherTestGame_abort PROPERTIES WILL_FAIL on)

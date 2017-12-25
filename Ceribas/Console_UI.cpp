@@ -21,7 +21,7 @@ UserInterface::ColumnType Console_UI::askPlayer(Color color)
     std::cout<< "in welche Spalte moechten Sie spielen? ";
     std::cin>>col;
 
-    return col-48;
+    return col-49;
 }
 
 void Console_UI::updateBoard(const GridType& grid)

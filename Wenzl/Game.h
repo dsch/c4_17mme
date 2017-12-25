@@ -10,11 +10,12 @@ class Game
         virtual ~Game();
         void play(); // Spiel wird gestartet
         int Gewonnen(const UserInterface::GridType& grid);
-        void Unentschieden(const UserInterface::GridType& grid);
+        bool Unentschieden(const UserInterface::GridType& grid);
 
     protected:
 
     private:
+        void updateBoard(const UserInterface::GridType& grid);
         UserInterface& ui;
 };
 

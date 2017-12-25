@@ -1,0 +1,6 @@
+include_directories(${common_dir}/windows)
+GAME(src/main/main.cpp src/main/ConsoleUI.cpp src/main/GameLogic.cpp)
+TEST(src/tests/GameLogic.cpp src/main/GameLogic.cpp src/main/ConsoleUI.cpp)
+UI_TEST(ConsoleUI src/main/ConsoleUI.cpp src/main/ConsoleUI.h)
+GAME_TEST(src/main/GameLogic.cpp)
+set_tests_properties(PutzTestGame_abort PROPERTIES WILL_FAIL on)

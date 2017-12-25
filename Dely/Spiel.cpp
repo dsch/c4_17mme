@@ -1,6 +1,6 @@
 #include "Spiel.h"
 
-void Spiel::Unentschieden(const UserInterface::GridType& grid)
+bool Spiel::Unentschieden(const UserInterface::GridType& grid)
 {
 int row = 0;
 int zaehler = 0;
@@ -15,7 +15,9 @@ int zaehler = 0;
             if(zaehler >= 7)
             {
                 ui.notifyDraw();
+                return true;
             }
+            return false;
 }
 
 int Spiel::Gewonnen(const UserInterface::GridType& grid)
@@ -89,7 +91,7 @@ int rueckgabe = 0;
     }
     /// ///////////////////////////////////////////////////////////////////////////////////////////////////////
 /// ///////////////////////////////////////////////////////////////////////////////////////////////////////
-/// schr‰g nach rechts oben
+/// schr√§g nach rechts oben
 
     for(int col=0; col<=6; col++)
     {
@@ -122,7 +124,7 @@ int rueckgabe = 0;
         }
     }
     /// ///////////////////////////////////////////////////////////////////////////////////////////////////////
-/// schr‰g nach links oben
+/// schr√§g nach links oben
 
     for(int col=3; col<=6; col++)
     {
@@ -192,6 +194,7 @@ void Spiel::play()
     // ui.notifyWinner(ui.Color::RED);
     int Reihe = 5;
     int run =1;
+    ui.updateBoard(SpielFeld);
 
     while (run)
     {
@@ -201,7 +204,7 @@ void Spiel::play()
         while (SpielFeld[Reihe][colNow].isEmpty() == false)
         {
             Reihe--;
-            if(Reihe <=0)
+            if(Reihe < 0)
             {
                 colNow = ui.askPlayer(ui.Color::RED);
                 Reihe = 5;
@@ -210,8 +213,7 @@ void Spiel::play()
 
         SpielFeld[Reihe][colNow] = (ui.Color::RED); /// col in int?
         ui.updateBoard(SpielFeld);
-        abbruch=Gewonnen(SpielFeld);
-        Unentschieden(SpielFeld);
+        abbruch=Gewonnen(SpielFeld) || Unentschieden(SpielFeld);
 
         if(abbruch!=0)
         {
@@ -223,9 +225,9 @@ void Spiel::play()
         while (SpielFeld[Reihe][colNow].isEmpty() == false)
         {
             Reihe--;
-            if(Reihe <=0)
+            if(Reihe < 0)
             {
-                colNow = ui.askPlayer(ui.Color::RED);
+                colNow = ui.askPlayer(ui.Color::YELLOW);
                 /// if (0 <= colNow <= 7)
                 Reihe = 5;
             }
@@ -233,8 +235,7 @@ void Spiel::play()
         SpielFeld[Reihe][colNow] = (ui.Color::YELLOW); /// col in int?
         ui.updateBoard(SpielFeld);
 
-        abbruch=Gewonnen(SpielFeld);
-        Unentschieden(SpielFeld);
+        abbruch=Gewonnen(SpielFeld) || Unentschieden(SpielFeld);
         if(abbruch!=0)
         {
             break;

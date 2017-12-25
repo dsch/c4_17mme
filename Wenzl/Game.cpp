@@ -1,6 +1,6 @@
 #include "Game.h"
 
-void Game::Unentschieden(const UserInterface::GridType& grid)
+bool Game::Unentschieden(const UserInterface::GridType& grid)
 {
 int row = 5;
 int zaehler = 0;
@@ -15,7 +15,9 @@ int zaehler = 0;
         if(zaehler >= 7)
             {
                 ui.notifyDraw();
+                return true;
             }
+    return false;
 }
 
 int Game::Gewonnen(const UserInterface::GridType& grid)
@@ -119,7 +121,7 @@ int rueckgabe = 0;
     }
 
 
-    for(int col=3; col<=6; col++) // schräg links nach oben - Gewinnbedingung
+    for(int col=3; col<=6; col++) // schrÃ¤g links nach oben - Gewinnbedingung
     {
         for(int row=7; row>=0; row--)
         {
@@ -174,12 +176,13 @@ void Game::play() //definieren was play() macht
 
     unsigned int colNow;
 
-    UserInterface::ColumnType col;
     UserInterface::RowType row;
     UserInterface::GridType grid;
 
     int Reihe = 0;
     int run =1;
+
+    updateBoard(SpielFeld);
 
     while (run)
     {
@@ -196,28 +199,36 @@ void Game::play() //definieren was play() macht
         }
 
         SpielFeld[Reihe][colNow] = (ui.Color::RED);
-        ui.updateBoard(SpielFeld);
-        Gewonnen(SpielFeld);
-        Unentschieden(SpielFeld);
+        updateBoard(SpielFeld);
+        run = (Gewonnen(SpielFeld) == 0) && !Unentschieden(SpielFeld);
 
-        Reihe = 0;
-        colNow = ui.askPlayer(ui.Color::YELLOW);
-        while (SpielFeld[Reihe][colNow].isEmpty() == false)
+        if (run)
         {
-            Reihe++;
-            if(Reihe >=6)
-                {
+            Reihe = 0;
+            colNow = ui.askPlayer(ui.Color::YELLOW);
+            while (SpielFeld[Reihe][colNow].isEmpty() == false) {
+                Reihe++;
+                if (Reihe >= 6) {
 
-                colNow = ui.askPlayer(ui.Color::RED);
+                    colNow = ui.askPlayer(ui.Color::YELLOW);
 
-                Reihe = 0;
+                    Reihe = 0;
                 }
-        }
-        SpielFeld[Reihe][colNow] = (ui.Color::YELLOW);
-        ui.updateBoard(SpielFeld);
+            }
+            SpielFeld[Reihe][colNow] = (ui.Color::YELLOW);
+            updateBoard(SpielFeld);
 
-        Gewonnen(SpielFeld);
-        Unentschieden(SpielFeld);
+            run = (Gewonnen(SpielFeld) == 0) && !Unentschieden(SpielFeld);
+        }
     }
 }
 
+void Game::updateBoard(const UserInterface::GridType& SpielFeld)
+{
+    UserInterface::GridType flipped;
+    for (std::size_t i = 0; i<6; i++)
+    {
+        flipped[5 - i] = SpielFeld[i];
+    }
+    ui.updateBoard(flipped);
+}

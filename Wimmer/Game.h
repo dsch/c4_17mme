@@ -8,9 +8,9 @@ class Game
     public:
         Game(UserInterface& ui);
         virtual ~Game();
-        void play(); // FUNKTION, DIE DAS SPIEL startet oder vorbereitet für ersten Spielzug
+        void play(); // FUNKTION, DIE DAS SPIEL startet oder vorbereitet fï¿½r ersten Spielzug
         int Gewonnen(const UserInterface::GridType& grid);
-        void Unentschieden(const UserInterface::GridType& grid);
+        bool Unentschieden(const UserInterface::GridType& grid);
 
     protected:
 

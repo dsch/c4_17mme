@@ -3,7 +3,7 @@
 
 // im ganzen game kann man nur das machen was im UserInterface definiert ist
 
-Game::Game(UserInterface& ui) : ui(ui)
+Game::Game(UserInterface& ui) : grid(), ui(ui)
 {
     CurrentPlayer= UserInterface::Color::RED;
     //ctor
@@ -74,7 +74,8 @@ bool Game::checkBoard(char gridRow,char gridCol)
     for(char c=colStart; c<=colEnd-3; c++)
     {
         j=c;
-        while ((!grid[i][j].isEmpty()) && (grid[i][j].getColor()==color)&&(j<c+4)) {i++; j++;}
+        while ((!grid[i][j].isEmpty()) && (grid[i][j].getColor()==color)&&(j<c+4)) {i++; j++; if (i > 5) break;}
+
         if(j==c+4) return true;
     }
 
@@ -107,7 +108,6 @@ void Game::play()
 
 
        selectedColumn = ui.askPlayer(CurrentPlayer);
-       selectedColumn--;
 
        currentRow=getEmptyCell(selectedColumn);
 
@@ -122,11 +122,11 @@ void Game::play()
 
 
 
-       if(selectedColumn=='0') {gameRunning=false; std::cout << "\n" <<  abort.what()<< "\n"; }
+       if(selectedColumn==-1) {gameRunning=false; std::cout << "\n" <<  abort.what()<< "\n"; }
 
     }
 
-    //Ablauf ungefähre Idee:
+    //Ablauf ungefÃ¤hre Idee:
     // 1. leeres Spielfeld initialisieren
     // 2. aktueller (erster) Spieler: welche Spalte kommt Spielstein hin?
     //

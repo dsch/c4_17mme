@@ -23,6 +23,10 @@ class Game
     protected:
 
     private:
+        static const int RED = 0;
+        static const int YELLOW = 1;
+        void updateBoard();
+
         UserInterface& ui;
         UserInterface::GridType grid;
 };

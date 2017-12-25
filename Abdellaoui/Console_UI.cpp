@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 
-// implementierung der Funktionen, die in Console_UI.h vorangekündigt wurden
+// implementierung der Funktionen, die in Console_UI.h vorangekÃ¼ndigt wurden
 
 Console_UI::Console_UI()
 {
@@ -27,7 +27,7 @@ UserInterface::ColumnType Console_UI::askPlayer(Color color)
 
 
 
-    return col-48;
+    return col-49;
 }
 
 void Console_UI::updateBoard(const GridType& grid)

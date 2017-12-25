@@ -1,7 +1,7 @@
 #ifndef GAMELOGIC_H
 #define GAMELOGIC_H
 
-#include "../UserInterface.h"
+#include "UserInterface.h"
 
 
 class GameLogic

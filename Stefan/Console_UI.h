@@ -12,7 +12,7 @@
 
 // --Zu Beachten:
 // matrizen Koordinaten sind oben links (0,0)
-// aber für Game-Logik ist es besser wenn zB unten links (0,0) ist
+// aber fÃ¼r Game-Logik ist es besser wenn zB unten links (0,0) ist
 // besser an einer einzigen Stelle im Programm umdrehen dass man nicht verwirrt ist
 
 class Console_UI : public UserInterface
@@ -20,8 +20,6 @@ class Console_UI : public UserInterface
 public:
     Console_UI();
     virtual ~Console_UI();
-
-    int Eingabe;
 
     //es wird funktion mit typ ColumnType geben die askPlayer heisst und (Color) als param hat
     ColumnType askPlayer(Color color);

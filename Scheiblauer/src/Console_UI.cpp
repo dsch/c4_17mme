@@ -30,11 +30,12 @@ Console_UI::ColumnType Console_UI::askPlayer(Color color)
         std::cin >> column;
         std::cout << std::endl << std::endl;
     }
-    return column;
+    return column - 48;
 }
 
 void Console_UI::updateBoard(const GridType& grid)
 {
+    system("cls");                      //l�scht den Bildschirm der Console
     int line = grid.size();             //Zeilen werden ausgelesen, ohne Indexangabe
     int column = grid[0].size();        //alle Element aus der 0ten-Zeile ausgegeben, mit ersten Index
 

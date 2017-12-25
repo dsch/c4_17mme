@@ -1,0 +1,5 @@
+include_directories(${common_dir}/windows)
+GAME(main.cpp GameLogic.cpp UI.cpp)
+#TEST(test.cpp GameLogic.cpp)
+UI_TEST(UI UI.cpp UI.h)
+GAME_TEST(GameLogic.cpp)

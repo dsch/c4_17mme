@@ -18,7 +18,7 @@ UI::ColumnType UI::askPlayer(Color color)
 
     if (color == Color::RED)
     {
-        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);    // Einf‰rben des Textes, Zahl gibt Farbe an 7= Weiﬂ, 12= Rot und 14= Gelb
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);    // Einf√§rben des Textes, Zahl gibt Farbe an 7= Wei√ü, 12= Rot und 14= Gelb
         std::cout << "Spieler ROT bitte Spalte waehlen: ";
         std::cin >> column;
         std::cout << std::endl << std::endl;
@@ -30,12 +30,13 @@ UI::ColumnType UI::askPlayer(Color color)
         std::cin >> column;
         std::cout << std::endl << std::endl;
     }
-    return column;
+    return column - 48;
 
 }
 
 void UI::updateBoard(const GridType& grid)
 {
+    system("cls");
     int row =grid.size();
     int col=grid[0].size();
 

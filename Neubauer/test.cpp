@@ -1,5 +1,5 @@
 #include <iostream>
-#include <gtest\gtest.h>
+#include <gtest/gtest.h>
 #include "gui/Gui.h"
 #include "UserInterface.h"
 #include "GameLogic.h"

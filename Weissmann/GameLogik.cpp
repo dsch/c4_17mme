@@ -35,10 +35,10 @@ void GameLogik::switchPlayer()
 
 void GameLogik::updateGame(UserInterface::ColumnType col)
 {
-   int field_line = grid.size();
-   if(currentPlayer == UserInterface::Color::RED)
+   int field_line = grid.size() - 1;
+   if(currentPlayer == UserInterface::Color::YELLOW)
     {
-            //column = ui.askPlayer(UserInterface::Color::YELLOW) - 48; //askPlayer gibt char aus ASCII-Tabelle zurück, "-48" um auf wahren Zahlenwert zu kommen
+            //column = ui.askPlayer(UserInterface::Color::YELLOW) - 48; //askPlayer gibt char aus ASCII-Tabelle zurÃ¼ck, "-48" um auf wahren Zahlenwert zu kommen
 
         for (int i=0; i <= field_line ; i++)
         {
@@ -46,7 +46,7 @@ void GameLogik::updateGame(UserInterface::ColumnType col)
             {
                 if(i == field_line )
                 {
-                    grid[i-1][col-1] = UserInterface::Color::YELLOW; // wirft Stein in Spielfeld
+                    grid[i][col-1] = UserInterface::Color::YELLOW; // wirft Stein in Spielfeld
                 }
             }
             else
@@ -64,7 +64,7 @@ void GameLogik::updateGame(UserInterface::ColumnType col)
             {
                 if(i == field_line )
                 {
-                    grid[i-1][col-1] = UserInterface::Color::RED; // wirft Stein in Spielfeld
+                    grid[i][col-1] = UserInterface::Color::RED; // wirft Stein in Spielfeld
                 }
             }
             else
@@ -122,9 +122,9 @@ bool GameLogik::isWin(UserInterface::GridType grid)
 
 //===================================================================================
 // Horizontale Gewinner-Ermittlung
-    for (int i = line-1; i > 0; i--) //=
+    for (int i = line-1; i >= 0; i--) //=
     {
-        for (int j = column-1; j > 0; j--)
+        for (int j = column-1; j >= 0; j--)
         {
             if (false == (grid[i][j].isEmpty()) && false ==(grid[i][j-1].isEmpty()) &&
                 (grid[i][j].getColor() == grid[i][j-1].getColor()))
@@ -150,11 +150,11 @@ bool GameLogik::isWin(UserInterface::GridType grid)
 
 //===================================================================================
 //Vertikale Gewinner-Ermittlung
-    if (connect != FOUR_STONES)
+    connect = 0;
     {
-        for (int j = column-1; j > 0; j--) //=
+        for (int j = column-1; j >= 0; j--) //=
         {
-            for (int i = line-1; i > 0; i--)
+            for (int i = line-1; i >= 0; i--)
             {
                 if ((false == (grid[i][j].isEmpty())) && (false ==(grid[i-1][j].isEmpty())) &&
                     ((grid[i][j].getColor() == grid[i-1][j].getColor())))
@@ -180,7 +180,7 @@ bool GameLogik::isWin(UserInterface::GridType grid)
 
 //===================================================================================
 //Diagonale von links unten - nach rechts oben: Gewinner-Ermittlung
-    if (connect != FOUR_STONES)
+    connect = 0;
     {
         for(int jj = 0; jj < column-3; jj++) //ii_column
         {
@@ -220,13 +220,13 @@ bool GameLogik::isWin(UserInterface::GridType grid)
 //===================================================================================
 //Diagonale von links oben - nach rechts unten: Gewinner-Ermittlung
 
-    if (connect != FOUR_STONES)
+    connect = 0;
     {
         for(int ii=0; ii < line-3; ii++)     // ii_line
         {
             for (int j=column-4; j >= 0; j--) //i_column
             {
-                for (int i=0; i+j< line; i++)    //i_line
+                for (int i=0; i+ii+1< line; i++)    //i_line
                 {
                     if (false == (grid[i+ii][i+j].isEmpty()) && false ==(grid[i+1+ii][i+j+1].isEmpty()) &&
                         (grid[i+ii][i+j].getColor() == grid[i+1+ii][i+j+1].getColor()))

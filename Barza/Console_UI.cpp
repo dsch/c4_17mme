@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 
-// implementierung der Funktionen, die in Console_UI.h vorangekündigt wurden
+// implementierung der Funktionen, die in Console_UI.h vorangekÃ¼ndigt wurden
 
 Console_UI::Console_UI()
 {
@@ -25,7 +25,7 @@ UserInterface::ColumnType Console_UI::askPlayer(Color color)
     std::cout<< "Please Choose collumn number: ";
     std::cin>>col;
 
-    return col-48;
+    return col-49;
 }
 
 void Console_UI::updateBoard(const GridType& grid)
@@ -56,7 +56,7 @@ void Console_UI::updateBoard(const GridType& grid)
     }
     std::cout << "-------------------------------------"<< "\n";
 
-    std::cout << "|      For exit game Press 0.       | "<< "\n";
+    std::cout << "|      For exit game Press 9.       | "<< "\n";
 
     std::cout << "-------------------------------------"<< "\n\n";
 

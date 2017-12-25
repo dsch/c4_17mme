@@ -50,7 +50,7 @@ int Game::GewinnErmittlung(const UserInterface::GridType& grid)
     //-------------QUERUEBERPRUEFUNG
     for(zeile = 5; zeile >= 0; zeile--)
     {
-        for(spalte= 0; spalte <= 2; spalte++)
+        for(spalte= 0; spalte <= 3; spalte++)
         {
             if( grid[zeile][spalte].isEmpty() == false
                     && grid[zeile][spalte].getColor() == ui.Color::RED
@@ -211,11 +211,12 @@ void Game::play()
     int auswahlSpalte_ROT = 0;
     int laufVar_Reihe = 5;
     int durchlauf =0;
+    ui.updateBoard(SpielFeld);
 
     while(1)
     {
 
-        auswahlSpalte_ROT = ui.askPlayer(ui.Color::RED) - 1;        //wird mit rot definiert
+        auswahlSpalte_ROT = ui.askPlayer(ui.Color::RED);        //wird mit rot definiert
         if(SpielFeld[laufVar_Reihe][auswahlSpalte_ROT].isEmpty() == false)
         {
             do
@@ -240,7 +241,7 @@ void Game::play()
 //--------------------------------------------------------------------------
 
         laufVar_Reihe = 5;
-        auswahlSpalte_GELB = ui.askPlayer(ui.Color::YELLOW) - 1;
+        auswahlSpalte_GELB = ui.askPlayer(ui.Color::YELLOW);
         if(SpielFeld[laufVar_Reihe][auswahlSpalte_GELB].isEmpty() == false)
         {
             do

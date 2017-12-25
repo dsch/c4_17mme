@@ -6,15 +6,15 @@
 #include "gui/Gui.h"
 
 
-// Test Cases verwenden ist auch für Prüfung wichtig!
-// Test für Gewinner-Logik schreiben
+// Test Cases verwenden ist auch fï¿½r Prï¿½fung wichtig!
+// Test fï¿½r Gewinner-Logik schreiben
 //
 
 int main(int argc,char** argv) //startet nur alle Elemente
 {
 
     std::cout << argc << std::endl;
-    std::cout << argv[1] << std::endl;
+    //std::cout << argv[1] << std::endl;
     //std::cout << argv[2] << std::endl;
 
     if(argc >= 3)
@@ -29,9 +29,9 @@ int main(int argc,char** argv) //startet nur alle Elemente
             Console_UI ui; // "instanzieren" -> erstelle eine Instanz (=ein Exemplar) von Console_UI
             // ui hat die struktur von Console_UI
             //auch wenn es nicht aktiv verwendet werden soll muss es einmal erstellt werden
-            // aber es soll nur über das UerInterface angesprochen werden
+            // aber es soll nur ï¿½ber das UerInterface angesprochen werden
             Game game(ui);  // Spiel wird erstellt
-            // Klasse "Game" enthält Spielregeln
+            // Klasse "Game" enthï¿½lt Spielregeln
             game.play(); //Funktio: Spiel starten
             // play() hast ganzen Spielablauf
 
@@ -42,9 +42,9 @@ int main(int argc,char** argv) //startet nur alle Elemente
             Gui ui; // "instanzieren" -> erstelle eine Instanz (=ein Exemplar) von Console_UI
             // ui hat die struktur von Console_UI
             //auch wenn es nicht aktiv verwendet werden soll muss es einmal erstellt werden
-            // aber es soll nur über das UerInterface angesprochen werden
+            // aber es soll nur ï¿½ber das UerInterface angesprochen werden
             Game game(ui);  // Spiel wird erstellt
-            // Klasse "Game" enthält Spielregeln
+            // Klasse "Game" enthï¿½lt Spielregeln
             game.play(); //Funktio: Spiel starten
             // play() hast ganzen Spielablauf
 
@@ -63,9 +63,9 @@ int main(int argc,char** argv) //startet nur alle Elemente
         Console_UI ui; // "instanzieren" -> erstelle eine Instanz (=ein Exemplar) von Console_UI
         // ui hat die struktur von Console_UI
         //auch wenn es nicht aktiv verwendet werden soll muss es einmal erstellt werden
-        // aber es soll nur über das UerInterface angesprochen werden
+        // aber es soll nur ï¿½ber das UerInterface angesprochen werden
         Game game(ui);  // Spiel wird erstellt
-        // Klasse "Game" enthält Spielregeln
+        // Klasse "Game" enthï¿½lt Spielregeln
         game.play(); //Funktio: Spiel starten
         // play() hast ganzen Spielablauf
     }

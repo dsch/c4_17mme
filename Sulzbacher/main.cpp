@@ -9,11 +9,11 @@
 
 int main(int argc, char** argv)
 {
-    //argc gibt an wie viele zus‰tliche Argumente eingegeben sind
+    //argc gibt an wie viele zus√§tliche Argumente eingegeben sind
     // --help           2 Argumente
     // --ui graphic     3 Argumente
     // --ui console     3 Argumente
-    // bei allem anderen zus‰tzlichen eingaben wird nichts ausgef¸hrt
+    // bei allem anderen zus√§tzlichen eingaben wird nichts ausgef√ºhrt
     switch(argc)
     {
 
@@ -23,7 +23,7 @@ int main(int argc, char** argv)
                 {
                     std::cout << "--ui graphic" << std::endl;
                     std::cout << "--ui console" << std::endl;
-                    std::cout << "--ui help" << std::endl;
+                    std::cout << "--help" << std::endl;
                 }
                 break;
             }

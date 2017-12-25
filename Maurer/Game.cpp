@@ -1,6 +1,6 @@
 #include "Game.h"
 
-void Game::Unentschieden(const UserInterface::GridType& grid)
+bool Game::Unentschieden(const UserInterface::GridType& grid)
 {
   int row = 0;
   int zaehler = 0;
@@ -15,7 +15,9 @@ void Game::Unentschieden(const UserInterface::GridType& grid)
   if(zaehler >= 7)
   {
     ui.notifyDraw();
+    return true;
   }
+  return false;
 }
 
 int Game::Gewonnen(const UserInterface::GridType& grid)
@@ -89,7 +91,7 @@ int Game::Gewonnen(const UserInterface::GridType& grid)
   }
   /// ///////////////////////////////////////////////////////////////////////////////////////////////////////
 /// ///////////////////////////////////////////////////////////////////////////////////////////////////////
-/// schr‰g nach rechts oben
+/// schr√§g nach rechts oben
 
   for(int col=0; col<=6; col++)
   {
@@ -122,7 +124,7 @@ int Game::Gewonnen(const UserInterface::GridType& grid)
     }
   }
   /// ///////////////////////////////////////////////////////////////////////////////////////////////////////
-/// schr‰g nach links oben
+/// schr√§g nach links oben
 
   for(int col=3; col<=6; col++)
   {
@@ -199,15 +201,14 @@ void Game::play()
       Reihe--;
       if(Reihe < 0)
       {
-        // std::cout << "Fail - Spalte ist voll. Andere Spalte w‰hlen";
+        // std::cout << "Fail - Spalte ist voll. Andere Spalte wÔøΩhlen";
         colNow = ui.askPlayer(ui.Color::RED);
         Reihe = 5;
       }
     }
     SpielFeld[Reihe][colNow] = (ui.Color::RED); /// col in int?
     ui.updateBoard(SpielFeld);
-    abbruch = Gewonnen(SpielFeld);
-    Unentschieden(SpielFeld);
+    abbruch = Gewonnen(SpielFeld) || Unentschieden(SpielFeld);
     if(abbruch != 0) break;
 
 
@@ -219,15 +220,15 @@ void Game::play()
       Reihe--;
       if(Reihe < 0)
       {
-        // std::cout << "Fail - Spalte voll. Andere Spalte w‰hlen";
-        colNow = ui.askPlayer(ui.Color::RED);
+        // std::cout << "Fail - Spalte voll. Andere Spalte wÔøΩhlen";
+        colNow = ui.askPlayer(ui.Color::YELLOW);
         Reihe = 5;
       }
     }
     SpielFeld[Reihe][colNow] = (ui.Color::YELLOW); /// col in int?
     ui.updateBoard(SpielFeld);
-    abbruch = Gewonnen(SpielFeld);
-    Unentschieden(SpielFeld);
+    abbruch = Gewonnen(SpielFeld) || Unentschieden(SpielFeld);
+
     if(abbruch != 0) break;
   }
 }
